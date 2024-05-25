@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 
 
-const EventsList = ({events}) => {
+const EventsList = ({events, filterInput, eventSearchInput}) => {
     const [selectedEvent, setSelectedEvent] = useState("");
 
     useEffect(() => {
@@ -14,17 +14,26 @@ const EventsList = ({events}) => {
     }, [selectedEvent])
 
     return (
-        <Box sx={{ overflow:"auto", width: '100%', bgcolor: 'background.paper' }}>
+        <Box sx={{scrollbarColor:"ash #F0F8FF", scrollbarWidth:"thin",overflow:"auto", width: '100%', bgcolor: '#F0F8FF', color:'#454545' }}>
             <List component="nav" aria-label="main mailbox folders">
                 {
-                    events.map((event) => {
-                        return (
-                            <EventTab 
-                                event={event} 
-                                selectedEvent={selectedEvent} 
-                                handleListItemClick={setSelectedEvent} 
-                            />
-                        )
+                    events.map((event) => {  
+                        if (event.tags == filterInput.toLowerCase() || event.tags == eventSearchInput.toLowerCase())
+                            return (
+                                <EventTab 
+                                    event={event} 
+                                    selectedEvent={selectedEvent} 
+                                    handleListItemClick={setSelectedEvent} 
+                                />  
+                            )
+                        if (filterInput === "Filters ...")
+                            return (
+                                <EventTab 
+                                    event={event} 
+                                    selectedEvent={selectedEvent} 
+                                    handleListItemClick={setSelectedEvent} 
+                                />  
+                            )
                     })
                 }
             </List>
