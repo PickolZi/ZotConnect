@@ -14,7 +14,7 @@ const EventsList = ({events}) => {
     }, [selectedEvent])
 
     return (
-        <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+        <Box sx={{ overflow:"auto", width: '100%', bgcolor: 'background.paper' }}>
             <List component="nav" aria-label="main mailbox folders">
                 {
                     events.map((event) => {
