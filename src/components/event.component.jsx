@@ -5,7 +5,6 @@ import InboxIcon from '@mui/icons-material/Inbox';
 
 
 const EventTab = ({event}) => {
-    console.log("event: ", event)
     return (
         <ListItemButton
             selected={false}
