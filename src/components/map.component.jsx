@@ -2,7 +2,7 @@
 import { MapContainer, TileLayer, useMap, Marker, Popup,  } from 'react-leaflet';
 
 const Map = ({events}) => {
-    console.log(events)
+    // console.log(events)
 
     const startingPosition = [33.6424, -117.8417] 
     const markers = [
