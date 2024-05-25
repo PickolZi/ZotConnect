@@ -4,16 +4,12 @@ const FilterBar = ({filterInput, setFilterInput, toggle, setToggle}) => {
         <div className=""> 
             <button onClick={()=>{
                 setToggle(!toggle); 
-                console.log(toggle);
-                console.log(filterInput);
-                if (toggle)
-                    setFilterInput("Filter ...");
-            }} className="rounded-md bg-white border-2 border-black p-3 h-[50px] w-auto">{filterInput}</button>
+                if (!toggle)
+                    setFilterInput("Filters");
+            }} className="rounded-md bg-[#e6ebf0] border-2 border-black p-3 h-[50px] w-auto">{filterInput}</button>
         </div>
     )
 }
-
-
 export default FilterBar;
 
 

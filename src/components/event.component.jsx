@@ -4,11 +4,11 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
 
 
-const EventTab = ({event}) => {
+const EventTab = ({event, selectedEvent, handleListItemClick}) => {
     return (
         <ListItemButton
-            selected={false}
-            // onClick={(event) => handleListItemClick(event, 0)}
+            selected={selectedEvent === event.event_id}
+            onClick={() => handleListItemClick(event.event_id)}
         >
             <ListItemIcon>
                 <InboxIcon />
