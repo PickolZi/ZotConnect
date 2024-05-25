@@ -1,6 +1,8 @@
+
 import { MapContainer, TileLayer, useMap, Marker, Popup,  } from 'react-leaflet';
 
-const Map = () => {
+const Map = ({events}) => {
+    console.log(events)
 
     const startingPosition = [33.6424, -117.8417] 
     const markers = [
@@ -21,6 +23,7 @@ const Map = () => {
             ]
         }
     ];
+    
     return (
         <div className="h-[100%] flex flex-grow bg-pink-300">
             <MapContainer className='h-[100%] w-[100%]' 
@@ -31,9 +34,9 @@ const Map = () => {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {markers.map((marker) => (
-                    <Marker position={marker.location}> 
-                        <Popup>{marker.popUp}</Popup>
+                {events.map((event) => (
+                    <Marker position={event.geopoint}> 
+                        {/* <Popup>{marker.popUp}</Popup> */}
                     </Marker>
                 ))}
                 
