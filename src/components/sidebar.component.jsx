@@ -14,7 +14,7 @@ const SideBar = ({events}) => {
     
 
     return (
-        <div className="flex flex-col lpl-2 h-[100%] w-[200px] md:w-[500px] bg-[#EDF7F6]">
+        <div className="flex flex-col pl-2 h-[100%] w-[200px] md:w-[500px] bg-[#EDF7F6]">
             <Title />
             <SearchBar eventSearchInput={eventSearchInput} setEventSearchInput={setEventSearchInput}/>
             <div className="flex justify-left bg-slate-300 p-0.5 gap-3 mr-2 rounded-xl">

@@ -1,5 +1,5 @@
 const ButtonList =({setFilterInput, toggle, setToggle})=>{
-    const categories = ["Sales","Study", "Recreational","Networking"];
+    const categories = ["Hackathon","Study", "Social","Networking"];
     const buttons = categories.map((act) => {
         return (<button onClick={()=>{
             setFilterInput(act);
