@@ -27,7 +27,10 @@ const Map = ({events}) => {
                 />
                 
                 {events.map((event) => (
-                    <Marker position={event.geopoint}> 
+                    <Marker 
+                        key={event.event_id}
+                        position={event.geopoint}
+                    > 
                         {/* <Popup>{marker.popUp}</Popup> */}
                     </Marker>
                 ))}

@@ -47,7 +47,7 @@ function App() {
       // tempEvents.sort((a,b) => {a['start_date'] - b['end_date']})
       // console.log(tempEvents)
       // setEvents(tempEvents)
-      console.log("events changed: ", events)
+      // console.log("events changed: ", events)
     },[events])
 
     const handleEventFormSubmit = async (newEventForm) => {

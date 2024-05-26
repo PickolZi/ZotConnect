@@ -20,7 +20,8 @@ const EventsList = ({events, filterInput, eventSearchInput}) => {
                     events.map((event) => {  
                         if (event.tags == filterInput.toLowerCase())
                             return (
-                                <EventTab 
+                                <EventTab
+                                    key={event.event_id} 
                                     event={event} 
                                     selectedEvent={selectedEvent} 
                                     handleListItemClick={setSelectedEvent} 
@@ -28,7 +29,8 @@ const EventsList = ({events, filterInput, eventSearchInput}) => {
                             )
                         if ((event.title.toLowerCase().includes(eventSearchInput.toLowerCase()) || event.description.toLowerCase().includes(eventSearchInput.toLowerCase())) && eventSearchInput.length > 0 && filterInput == "Filters ...")
                             return (
-                                <EventTab 
+                                <EventTab
+                                    key={event.event_id} 
                                     event={event} 
                                     selectedEvent={selectedEvent} 
                                     handleListItemClick={setSelectedEvent} 
@@ -36,7 +38,8 @@ const EventsList = ({events, filterInput, eventSearchInput}) => {
                             )
                         if (filterInput === "Filters ..." && eventSearchInput == "")
                             return (
-                                <EventTab 
+                                <EventTab
+                                    key={event.event_id} 
                                     event={event} 
                                     selectedEvent={selectedEvent} 
                                     handleListItemClick={setSelectedEvent} 
