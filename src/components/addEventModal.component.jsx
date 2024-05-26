@@ -14,29 +14,28 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 import { Button } from '@mui/material';
-import dayjs from 'dayjs';
 
 
 const style = {
-  position: 'absolute',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '8px',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-//   width: 400,
-  bgcolor: 'background.paper',
-  border: '1px solid #000',
-  boxShadow: 24,
-  p: 4,
+    position: 'absolute',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '8px',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    //   width: 400,
+    bgcolor: 'background.paper',
+    border: '1px solid #000',
+    boxShadow: 24,
+    p: 4,
 };
 
-const AddEventModal = ({eventForm, handleEventFormSubmit, setEventForm, openModal, setOpenModal}) => {
+const AddEventModal = ({eventForm, handleEventFormSubmit, setEventForm, openEventModal, setOpenEventModal}) => {
     return (
         <Modal
-            open={openModal}
-            onClose={() => setOpenModal(false)}
+            open={openEventModal}
+            onClose={() => setOpenEventModal(false)}
         >
             <Box sx={style}>
                 <Typography id="modal-modal-title" variant="h6" component="h2">

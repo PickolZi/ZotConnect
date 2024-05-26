@@ -17,7 +17,6 @@ const Map = ({events}) => {
                 zoom={15}
                 maxBounds={bounds}
                 scrollWheelZoom={true}
-                onClick={handleClick}
                 ref={setMap}
             >
                 <TileLayer
@@ -37,12 +36,12 @@ const Map = ({events}) => {
 
             </MapContainer>
             
-            <button 
+            {/* <button 
                 className='fixed right-4 top-4 z-[999] bg-black text-white p-2'
                 onClick={() => map.setView([33.6424, -117.8417], map.getZoom()+10)}
             >
                 Click
-            </button>
+            </button> */}
         </div>
     )
 }
