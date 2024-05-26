@@ -96,8 +96,8 @@ function App() {
 
       {/* Main page componenets */}
       <Sidebar events={events} map={map}/>
-      <AddEventModal eventForm={eventForm} handleEventFormSubmit={handleEventFormSubmit} setEventForm={setEventForm} openModal={openModal} setOpenModal={setOpenModal} />
-      <AddEventButton setOpenModal={setOpenModal} />
+      <AddEventModal eventForm={eventForm} handleEventFormSubmit={handleEventFormSubmit} setEventForm={setEventForm} openEventModal={openEventModal} setOpenEventModal={setOpenEventModal} />
+      <AddEventButton setOpenEventModal={setOpenEventModal} />
       <Map events={events} map={map} setMap={setMap}/>
     </div>
   );
