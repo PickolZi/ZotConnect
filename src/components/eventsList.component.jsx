@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 
 
-const EventsList = ({events, filterInput, eventSearchInput}) => {
+const EventsList = ({events, filterInput, eventSearchInput, map}) => {
     const [selectedEvent, setSelectedEvent] = useState("");
 
     useEffect(() => {
@@ -24,7 +24,8 @@ const EventsList = ({events, filterInput, eventSearchInput}) => {
                                     key={event.event_id} 
                                     event={event} 
                                     selectedEvent={selectedEvent} 
-                                    handleListItemClick={setSelectedEvent} 
+                                    handleListItemClick={setSelectedEvent}
+                                    map={map} 
                                 />  
                             )
                         if ((event.title.toLowerCase().includes(eventSearchInput.toLowerCase()) || event.description.toLowerCase().includes(eventSearchInput.toLowerCase())) && eventSearchInput.length > 0 && filterInput == "Filters ...")
@@ -34,6 +35,7 @@ const EventsList = ({events, filterInput, eventSearchInput}) => {
                                     event={event} 
                                     selectedEvent={selectedEvent} 
                                     handleListItemClick={setSelectedEvent} 
+                                    map={map}
                                 />  
                             )
                         if (filterInput === "Filters ..." && eventSearchInput == "")
@@ -43,6 +45,7 @@ const EventsList = ({events, filterInput, eventSearchInput}) => {
                                     event={event} 
                                     selectedEvent={selectedEvent} 
                                     handleListItemClick={setSelectedEvent} 
+                                    map={map}
                                 />  
                             )
                         })

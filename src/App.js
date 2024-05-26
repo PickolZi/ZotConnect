@@ -27,6 +27,7 @@ function App() {
   const [events, setEvents] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [eventForm, setEventForm] = useState(EVENT_TEMPLATE);
+  const [map, setMap] = useState(null);
 
     // Gets events from firebase api.
     useEffect(() => {
@@ -52,10 +53,10 @@ function App() {
 
   return (
     <div className="App flex flex-row h-screen">
-      <Sidebar events={events} />
+      <Sidebar events={events} map={map}/>
       <AddEventModal eventForm={eventForm} handleEventFormSubmit={handleEventFormSubmit} setEventForm={setEventForm} openModal={openModal} setOpenModal={setOpenModal} />
       <AddEventButton setOpenModal={setOpenModal} />
-      <Map events={events} />
+      <Map events={events} map={map} setMap={setMap}/>
     </div>
   );
 }

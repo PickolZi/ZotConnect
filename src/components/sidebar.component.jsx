@@ -6,7 +6,7 @@ import EventsList from './eventsList.component'
 import SideScroll from './sideScroll.component'
 import Title from './title.component'
 
-const SideBar = ({events}) => {
+const SideBar = ({events, map}) => {
     const [eventSearchInput, setEventSearchInput] = useState("");
     const [filterInput, setFilterInput] = useState("Filters ...");
     const [toggle, setToggle] = useState(false);
@@ -18,7 +18,7 @@ const SideBar = ({events}) => {
                 <Filter filterInput={filterInput} setFilterInput={setFilterInput} toggle={toggle} setToggle={setToggle} />
                 <SideScroll filterInput={filterInput} setFilterInput={setFilterInput} toggle={toggle} setToggle={setToggle}/>
             </div>
-            <EventsList events={events} filterInput={filterInput} eventSearchInput={eventSearchInput}/>
+            <EventsList events={events} filterInput={filterInput} eventSearchInput={eventSearchInput} map={map}/>
         </div>  
     )
 }
