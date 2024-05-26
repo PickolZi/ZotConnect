@@ -9,7 +9,8 @@ const Map = ({events, map, setMap, choosingLocation, setChoosingLocation, setLoc
     const bounds = [
         [33.6588, -117.8210],
         [33.6300, -117.8597],
-    ]
+    ];
+
     
     useEffect(() => {
         if (map != null) {
@@ -51,7 +52,15 @@ const Map = ({events, map, setMap, choosingLocation, setChoosingLocation, setLoc
                         key={event.event_id}
                         position={event.geopoint}
                     > 
-                        {/* <Popup>{marker.popUp}</Popup> */}
+                        <Popup className="h-[150px] w-[150px] flex">
+                            <div className="content-center flex gap-2">
+                                {event.title}
+                                <div>              </div>
+                                {event.description}
+                                <div>              </div>
+                                From: {String(event.start_date).slice(4,21)}, To {String(event.end_date).slice(4,21)}
+                            </div>
+                        </Popup>
                     </Marker>
                 ))}
 
