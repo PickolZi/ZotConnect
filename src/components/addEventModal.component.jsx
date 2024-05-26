@@ -31,7 +31,7 @@ const style = {
     p: 4,
 };
 
-const AddEventModal = ({eventForm, handleEventFormSubmit, setEventForm, openEventModal, setOpenEventModal}) => {
+const AddEventModal = ({eventForm, handleEventFormSubmit, setEventForm, openEventModal, setOpenEventModal, setChoosingLocation, location}) => {
     return (
         <Modal
             open={openEventModal}
@@ -60,6 +60,19 @@ const AddEventModal = ({eventForm, handleEventFormSubmit, setEventForm, openEven
                     onChange={(event) => {setEventForm({...eventForm, description: event.target.value})}}
                     required={true}
                 />
+
+                {/* Add Location button */}
+                <Button 
+                    variant="outlined"
+                    onClick={() => {
+                        setOpenEventModal(false)
+                        setChoosingLocation(true)
+                    }}
+                >
+                    {
+                        location ? "Change Location" : "Add Location"
+                    }
+                </Button>
 
                 {/* Date/Time Range */}
                 <LocalizationProvider dateAdapter={AdapterDayjs}>

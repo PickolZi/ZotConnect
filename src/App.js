@@ -25,7 +25,7 @@ const EVENT_TEMPLATE = {
   start_date: dayjs().toDate(),
   end_date: dayjs().toDate(),
   // geopoint: undefined,
-  geopoint: [33.6424 + (Math.random() * 0.03), -117.8417 + (Math.random() * 0.03)],
+  geopoint: [33.6424 + (Math.random() * 0.02), -117.8417 + (Math.random() * 0.02)],
   tags: "social",
   // host_uid: undefined
   host_uid: "TestUIDNeedToAdd"
@@ -39,9 +39,21 @@ function App() {
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
 
   const [user, setUser] = useState(null);
+
+  const [location, setLocation] = useState(null);
+  const [choosingLocation, setChoosingLocation] = useState(false);
   
   const [eventForm, setEventForm] = useState(EVENT_TEMPLATE);
   const [map, setMap] = useState(null);
+
+
+  useEffect(() => {
+    if (choosingLocation) {
+      setChoosingLocation(false)
+      setOpenEventModal(true)
+      setEventForm({...eventForm, geopoint: location})
+    }
+  }, [location])
 
   // Gets events from firebase api.
   useEffect(() => {
@@ -73,7 +85,8 @@ function App() {
         handleEventFormSubmit={handleEventFormSubmit} 
         setEventForm={setEventForm} 
         openEventModal={openEventModal} 
-        setOpenEventModal={setOpenEventModal} 
+        setOpenEventModal={setOpenEventModal}
+        map={map}
       />
       <AddEventButton setOpenEventModal={setOpenEventModal} />
 
@@ -96,9 +109,24 @@ function App() {
 
       {/* Main page componenets */}
       <Sidebar events={events} map={map}/>
-      <AddEventModal eventForm={eventForm} handleEventFormSubmit={handleEventFormSubmit} setEventForm={setEventForm} openEventModal={openEventModal} setOpenEventModal={setOpenEventModal} />
+      <AddEventModal 
+        eventForm={eventForm} 
+        handleEventFormSubmit={handleEventFormSubmit} 
+        setEventForm={setEventForm} 
+        openEventModal={openEventModal} 
+        setOpenEventModal={setOpenEventModal}
+        setChoosingLocation={setChoosingLocation}
+        location={location}
+      />
       <AddEventButton setOpenEventModal={setOpenEventModal} />
-      <Map events={events} map={map} setMap={setMap}/>
+      <Map 
+        events={events} 
+        map={map} 
+        setMap={setMap} 
+        choosingLocation={choosingLocation}
+        setChoosingLocation={setChoosingLocation}
+        setLocation={setLocation}
+      />
     </div>
   );
 }
