@@ -16,9 +16,10 @@ const eventsCollection = collection(db, "Events");
 export const getAllEventsFirestore = async () => {
     return await getDocs(eventsCollection).then((res) => {
         let docs = res.docs.map((doc) => {
-            return {...doc.data(), event_id: doc.id}
+            return {...doc.data(), event_id: doc.id, start_date: doc.data().start_date.toDate(), end_date: doc.data().end_date.toDate()}
         })
-        docs.sort((a,b) => a['start_date'].seconds - b['start_date'].seconds)
+        // console.log(docs[0].start_date.valueOf())
+        docs.sort((a,b) => a['start_date'].valueOf() - b['start_date'].valueOf())
         return docs;    
     });
 }

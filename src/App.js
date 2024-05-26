@@ -28,10 +28,6 @@ function App() {
   const [openModal, setOpenModal] = useState(false);
   const [eventForm, setEventForm] = useState(EVENT_TEMPLATE);
 
-    // useEffect(() => {
-    //   console.log("events form: ", eventForm)
-    // }, [eventForm])
-
     // Gets events from firebase api.
     useEffect(() => {
       const getAllEvents = async () => {
@@ -42,19 +38,10 @@ function App() {
       getAllEvents();
     }, []);
 
-    useEffect(() => {
-      // let tempEvents = [...events]
-      // tempEvents.sort((a,b) => {a['start_date'] - b['end_date']})
-      // console.log(tempEvents)
-      // setEvents(tempEvents)
-      // console.log("events changed: ", events)
-    },[events])
-
     const handleEventFormSubmit = async (newEventForm) => {
       await addEventFirestore(newEventForm).then((res) => {
         let tempEvents = [...events, newEventForm]
-        // tempEvents.sort((a,b) => a['start_date'].seconds - b['start_date'].seconds)
-        // console.log(tempEvents)
+        tempEvents.sort((a,b) => a['start_date'].valueOf() - b['start_date'].valueOf())
         setEvents(tempEvents)
         setEventForm(EVENT_TEMPLATE);
         setOpenModal(false);

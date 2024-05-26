@@ -67,7 +67,7 @@ const AddEventModal = ({eventForm, handleEventFormSubmit, setEventForm, openModa
                     <DemoContainer components={['DateTimePicker']}>
                         <DateTimePicker 
                             label="Starting Date/Time"
-                            value={dayjs(eventForm['start_date'])} 
+                            // value={dayjs(eventForm['start_date'])} 
                             onChange={(dayObject) => {setEventForm({...eventForm, start_date: dayObject.toDate()})}}
                             required={true}
                         />
@@ -75,7 +75,7 @@ const AddEventModal = ({eventForm, handleEventFormSubmit, setEventForm, openModa
                     <DemoContainer components={['DateTimePicker']}>
                         <DateTimePicker 
                             label="Ending Date/Time" 
-                            value={dayjs(eventForm['end_date'])} 
+                            // value={dayjs(eventForm['end_date'])} 
                             onChange={(dayObject) => {setEventForm({...eventForm, end_date: dayObject.toDate()})}}
                             required={true}
                         />
