@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -13,9 +11,10 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 
 import { Button } from '@mui/material';
+import dayjs from 'dayjs';
 
 
 const style = {
@@ -33,57 +32,82 @@ const style = {
   p: 4,
 };
 
-const AddEventModal = ({openModal, setOpenModal}) => {
-    const [startDate, setStartDate] = useState();
-  return (
-    <div>
-      <Modal
-        open={openModal}
-        onClose={() => setOpenModal(false)}
-      >
-        <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-                Add an event
-            </Typography>
+const AddEventModal = ({eventForm, handleEventFormSubmit, setEventForm, openModal, setOpenModal}) => {
+    return (
+        <Modal
+            open={openModal}
+            onClose={() => setOpenModal(false)}
+        >
+            <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Add an event
+                </Typography>
 
-            <TextField label="Title" variant="outlined" />
-            <TextField
-                id="outlined-multiline-static"
-                label="Description"
-                multiline
-                rows={4}
-            />
+                {/* Title field */}
+                <TextField 
+                    label="Title" 
+                    variant="outlined" 
+                    value={eventForm['title']}
+                    onChange={(event) => {setEventForm({...eventForm, title: event.target.value})}}
+                    required={true}
+                />
 
-            {/* Date/Time Range */}
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={['DateTimePicker']}>
-                    <DateTimePicker label="Starting Date/Time" />
-                </DemoContainer>
-                <DemoContainer components={['DateTimePicker']}>
-                    <DateTimePicker label="Ending Date/Time" />
-                </DemoContainer>
-            </LocalizationProvider>
+                {/* Description field */}
+                <TextField
+                    label="Description"
+                    multiline
+                    rows={4}
+                    value={eventForm['description']}
+                    onChange={(event) => {setEventForm({...eventForm, description: event.target.value})}}
+                    required={true}
+                />
 
-            {/* Tag options */}
-            <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Tags</InputLabel>
-                <Select
-                    label="Tags"
-                    onChange={() => alert("hi")}
+                {/* Date/Time Range */}
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={['DateTimePicker']}>
+                        <DateTimePicker 
+                            label="Starting Date/Time"
+                            value={dayjs(eventForm['start_date'])} 
+                            onChange={(dayObject) => {setEventForm({...eventForm, start_date: dayObject.toDate()})}}
+                            required={true}
+                        />
+                    </DemoContainer>
+                    <DemoContainer components={['DateTimePicker']}>
+                        <DateTimePicker 
+                            label="Ending Date/Time" 
+                            value={dayjs(eventForm['end_date'])} 
+                            onChange={(dayObject) => {setEventForm({...eventForm, end_date: dayObject.toDate()})}}
+                            required={true}
+                        />
+                    </DemoContainer>
+                </LocalizationProvider>
+
+                {/* Tag options */}
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Tags</InputLabel>
+                    <Select
+                        label="Tags"
+                        value={eventForm['tags']}
+                        onChange={(event) => {setEventForm({...eventForm, tags: event.target.value})}}
+                        required={true}
+                    >
+                        <MenuItem value="social">Social</MenuItem>
+                        <MenuItem value="hackathon">Hackathon</MenuItem>
+                        <MenuItem value="study">Study</MenuItem>
+                        <MenuItem value="networking">Networking</MenuItem>
+                    </Select>
+                </FormControl>
+
+                {/* Submit button */}
+                <Button 
+                    variant="contained"
+                    onClick={() => handleEventFormSubmit(eventForm)}
                 >
-                    <MenuItem value="hackthon">Hackthon</MenuItem>
-                    <MenuItem value="study">Study</MenuItem>
-                    <MenuItem value="social">Social</MenuItem>
-                    <MenuItem value="networking">Networking</MenuItem>
-                </Select>
-            </FormControl>
-
-            {/* Submit button */}
-            <Button variant="contained">Add Event</Button>
-        </Box>
-      </Modal>
-    </div>
-  );
+                    Add Event
+                </Button>
+            </Box>
+        </Modal>
+    );
 }
 
 export default AddEventModal;
