@@ -18,7 +18,7 @@ const EventsList = ({events, filterInput, eventSearchInput}) => {
             <List component="nav" aria-label="main mailbox folders">
                 {
                     events.map((event) => {  
-                        if (event.tags == filterInput.toLowerCase() || event.tags == eventSearchInput.toLowerCase())
+                        if (event.tags == filterInput.toLowerCase())
                             return (
                                 <EventTab 
                                     event={event} 
@@ -26,7 +26,7 @@ const EventsList = ({events, filterInput, eventSearchInput}) => {
                                     handleListItemClick={setSelectedEvent} 
                                 />  
                             )
-                        if (filterInput === "Filters ...")
+                        if ((event.title.toLowerCase().includes(eventSearchInput.toLowerCase()) || event.description.toLowerCase().includes(eventSearchInput.toLowerCase())) && eventSearchInput.length > 0 && filterInput == "Filters ...")
                             return (
                                 <EventTab 
                                     event={event} 
@@ -34,7 +34,15 @@ const EventsList = ({events, filterInput, eventSearchInput}) => {
                                     handleListItemClick={setSelectedEvent} 
                                 />  
                             )
-                    })
+                        if (filterInput === "Filters ..." && eventSearchInput == "")
+                            return (
+                                <EventTab 
+                                    event={event} 
+                                    selectedEvent={selectedEvent} 
+                                    handleListItemClick={setSelectedEvent} 
+                                />  
+                            )
+                        })
                 }
             </List>
         </Box>
