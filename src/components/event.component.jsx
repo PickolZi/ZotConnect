@@ -4,11 +4,14 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
 
 
-const EventTab = ({event, selectedEvent, handleListItemClick}) => {
+const EventTab = ({event, selectedEvent, handleListItemClick , map}) => {
     return (
         <ListItemButton
             selected={selectedEvent === event.event_id}
-            onClick={() => handleListItemClick(event.event_id)}
+            onClick={() => {
+                handleListItemClick(event.event_id);
+                map.setView(event.geopoint, map.getZoom()+4);
+            }}
         >
             <ListItemIcon>
                 <InboxIcon />

@@ -41,6 +41,7 @@ function App() {
   const [user, setUser] = useState(null);
   
   const [eventForm, setEventForm] = useState(EVENT_TEMPLATE);
+  const [map, setMap] = useState(null);
 
   // Gets events from firebase api.
   useEffect(() => {
@@ -94,8 +95,10 @@ function App() {
       <AuthAvatar user={user} setOpenSignInModal={setOpenSignInModal} setOpenSignUpModal={setOpenSignUpModal}/>
 
       {/* Main page componenets */}
-      <Sidebar events={events} />
-      <Map events={events} />
+      <Sidebar events={events} map={map}/>
+      <AddEventModal eventForm={eventForm} handleEventFormSubmit={handleEventFormSubmit} setEventForm={setEventForm} openModal={openModal} setOpenModal={setOpenModal} />
+      <AddEventButton setOpenModal={setOpenModal} />
+      <Map events={events} map={map} setMap={setMap}/>
     </div>
   );
 }
